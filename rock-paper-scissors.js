@@ -15,13 +15,15 @@ function getComputerChoice() {
   return computerResult;
 }
 
-let humanPick = parseInt(prompt('1 is rock, 2 is paper, 3 is scissors'));
+//let humanPick = parseInt(prompt('1 is rock, 2 is paper, 3 is scissors'));
 
 // console.log();
 
 let humanResult;
 
 function getHumanChoice() {
+  let humanPick = parseInt(prompt('1 is rock, 2 is paper, 3 is scissors'));
+
   if (humanPick == 1) {
     humanResult = 'rock';
   } else if (humanPick == 2) {
@@ -34,14 +36,6 @@ function getHumanChoice() {
   }
   return humanResult;
 }
-
-getHumanChoice();
-
-getComputerChoice();
-
-console.log(computerResult);
-
-console.log(humanResult);
 
 let computerScore = 0;
 
@@ -77,9 +71,36 @@ function playRound(humanResult, computerResult) {
     alert(`You won!`);
     humanScore++;
   }
-  return humanScore, computerScore;
 }
 
-playRound(humanResult, computerResult);
+function playGame() {
+  getHumanChoice();
 
-console.log(computerScore, humanScore);
+  getComputerChoice();
+
+  console.log(computerResult);
+
+  console.log(humanResult);
+
+  playRound(humanResult, computerResult);
+
+  console.log(humanScore, computerScore);
+}
+
+playGame();
+playGame();
+playGame();
+playGame();
+playGame();
+
+function gameResult() {
+  if (humanScore > computerScore) {
+    alert('You won the game!');
+  } else if (humanScore < computerScore) {
+    alert('You lost the game!');
+  } else {
+    alert('Game is a tie!');
+  }
+}
+
+gameResult();
