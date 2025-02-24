@@ -15,27 +15,7 @@ function getComputerChoice() {
   return computerResult;
 }
 
-//let humanPick = parseInt(prompt('1 is rock, 2 is paper, 3 is scissors'));
-
-// console.log();
-
 let humanResult;
-
-function getHumanChoice() {
-  let humanPick = parseInt(prompt('1 is rock, 2 is paper, 3 is scissors'));
-
-  if (humanPick == 1) {
-    humanResult = 'rock';
-  } else if (humanPick == 2) {
-    humanResult = 'paper';
-  } else if (humanPick == 3) {
-    humanResult = 'scissors';
-  } else {
-    humanPick = parseInt(prompt('please pick a number from 1 to 3'));
-    getHumanChoice();
-  }
-  return humanResult;
-}
 
 let computerScore = 0;
 
@@ -73,8 +53,7 @@ function playRound(humanResult, computerResult) {
   }
 }
 
-function playGame() {
-  getHumanChoice();
+function playGame(humanResult) {
 
   getComputerChoice();
 
@@ -87,20 +66,34 @@ function playGame() {
   console.log(humanScore, computerScore);
 }
 
-playGame();
-playGame();
-playGame();
-playGame();
-playGame();
+let gameRound = 0;
 
-function gameResult() {
-  if (humanScore > computerScore) {
+const rock = document.querySelector('.rock')
+const paper = document.querySelector('.paper')
+const scissors = document.querySelector('.scissors')
+
+function gameEnd() {
+  if (humanScore === 5) {
     alert('You won the game!');
-  } else if (humanScore < computerScore) {
-    alert('You lost the game!');
-  } else {
-    alert('Game is a tie!');
+  } else if (computerScore === 5) {
+    alert('You lost the game!')
   }
 }
 
-gameResult();
+const result = document.querySelector('p');
+
+rock.addEventListener('click', () => {
+  playGame('rock');
+  gameEnd();
+  result.textContent = `Player ${humanScore}:${computerScore} Computer`;
+});
+paper.addEventListener('click', () => {
+  playGame('paper');
+  gameEnd();
+  result.textContent = `Player ${humanScore}:${computerScore} Computer`;
+});
+scissors.addEventListener('click', () => {
+  playGame('scissors');
+  gameEnd();
+  result.textContent = `Player ${humanScore}:${computerScore} Computer`;
+});
